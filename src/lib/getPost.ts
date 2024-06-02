@@ -10,7 +10,8 @@ export default function getPost(basePath: string, slug: string): Metadata {
       console.log(`${basePath}/${filename}`);
       const fileContent = fs.readFileSync(`${basePath}/${filename}`, "utf8");
       const matterResult = matter(fileContent);
-      if (matterResult.data.slug === slug) {
+      console.log(filename);
+      if (filename.replace(".md", "") === slug) {
          return {
             tags: matterResult.data.tags,
             title: matterResult.data.title,
