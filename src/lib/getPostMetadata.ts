@@ -7,7 +7,7 @@ export default function getPostMetadata(basePath: string): Metadata[] {
    const markdownPosts = files.filter((file) => file.endsWith(".md"));
 
    const posts = markdownPosts.map((filename) => {
-      console.log(`${basePath}/${filename}`);
+      console.log(`Metadata Extracted: ${basePath}/${filename}`);
       const fileContent = fs.readFileSync(`${basePath}/${filename}`, "utf8");
       const matterResult = matter(fileContent);
       return {
