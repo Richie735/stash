@@ -1,15 +1,12 @@
-import getPost from "@/lib/getPost";
 import { Metadata } from "@/lib/types";
-import Markdown from "markdown-to-jsx";
 
 const page = async (props: { params: Metadata }) => {
    const slug = props.params?.slug;
-   // const post = getPostContent(slug);
-   const post = getPost("src/lib/posts", slug);
    console.log(slug);
    return (
       <main>
-         <article>
+         <h1>{slug}</h1>
+         {/* <article>
             <div
                className="icon-container border-none"
                dangerouslySetInnerHTML={{
@@ -43,7 +40,7 @@ const page = async (props: { params: Metadata }) => {
             ) : (
                "Error: Post not found"
             )}
-         </article>
+         </article> */}
       </main>
    );
 };
