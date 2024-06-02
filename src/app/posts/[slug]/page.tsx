@@ -38,7 +38,7 @@ const page = async (props: { params: Metadata }) => {
    const slug = props.params?.slug;
    // const post = getPostContent(slug);
    const post = getPost("src/lib/posts", slug);
-
+   console.log(post.content);
    return (
       <main>
          <article>
@@ -70,7 +70,11 @@ const page = async (props: { params: Metadata }) => {
                   year: "numeric",
                })}
             </p>
-            <Markdown>{post.content}</Markdown>
+            {post.content ? (
+               <Markdown>{post.content}</Markdown>
+            ) : (
+               "Error: Post not found"
+            )}
          </article>
       </main>
    );

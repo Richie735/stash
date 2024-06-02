@@ -5,5 +5,5 @@ export type Metadata = {
    icon?: string;
    reviewDate: Date;
    slug: string;
-   content?: string;
+   content?: JSX.Element;
 };
