@@ -32,6 +32,6 @@ export default function getPostContent(
       icon: matterResult.data.icon,
       reviewDate: matterResult.data.reviewDate,
       slug: slug,
-      content: matterResult.content,
+      // content: matterResult.content,
    } as Metadata;
 }
