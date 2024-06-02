@@ -14,6 +14,7 @@ export default function getPostMetadata(basePath: string): Metadata[] {
          tags: matterResult.data.tags,
          title: matterResult.data.title,
          description: matterResult.data.description,
+         icon: matterResult.data.icon,
          reviewDate: matterResult.data.reviewDate,
          slug: filename.replace(".md", ""),
       } as Metadata;
