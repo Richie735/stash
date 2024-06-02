@@ -1,4 +1,3 @@
-import getPostMetadata from "@/lib/getPostMetadata";
 import { Metadata } from "@/lib/types";
 import fs from "fs";
 import matter from "gray-matter";
@@ -19,10 +18,10 @@ function getPostContent(slug: string) {
    };
 }
 
-export const getStaticParams = async () => {
-   const posts = getPostMetadata("src/lib/posts");
-   return posts.map((post) => ({ slug: post.slug }));
-};
+// export const getStaticParams = async () => {
+//    const posts = getPostMetadata("src/lib/posts");
+//    return posts.map((post) => ({ slug: post.slug }));
+// };
 
 export async function generateMetadata({ params }: { params: Metadata }) {
    const id = params?.slug ? params?.slug : "";
