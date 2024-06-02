@@ -1,8 +1,11 @@
+import getPostContent from "@/lib/getPostContent";
 import { Metadata } from "@/lib/types";
 
 const page = async (props: { params: Metadata }) => {
    const slug = props.params?.slug;
    console.log(slug);
+   const post = getPostContent("src/lib/posts", slug);
+   console.log(post);
    return (
       <main>
          <h1>{slug}</h1>
