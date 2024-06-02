@@ -20,3 +20,43 @@ body {
 .icon-container svg {
    @apply w-16 h-16 group-hover:text-primary;
 }
+
+article {
+   @apply max-w-3xl mx-auto mt-28;
+}
+
+article div {
+   @apply flex flex-col gap-3 m-4 p-8  border border-border rounded-md;
+}
+
+article h2 {
+   @apply text-2xl font-bold text-primaryText mt-6 mb-4;
+}
+
+article h3 {
+   @apply text-xl font-bold text-primaryText mt-3;
+}
+
+article ul {
+   @apply list-inside;
+}
+
+article li {
+   @apply list-disc;
+}
+
+article a {
+   @apply text-secondaryText underline;
+}
+
+article strong {
+   @apply font-bold text-primaryText;
+}
+
+article pre {
+   @apply bg-secondaryBg text-secondaryText p-3 rounded-md font-mono;
+}
+
+article code {
+   @apply text-wrap;
+}
