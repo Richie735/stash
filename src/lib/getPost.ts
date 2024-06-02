@@ -4,31 +4,34 @@ import { Metadata } from "./types";
 
 export default function getPost(basePath: string, slug: string): Metadata {
    const files = fs.readdirSync(basePath);
-   const post = files.filter((file) => file.endsWith(`${slug}.md`));
+   const markdownPosts = files.filter((file) => file.endsWith(".md"));
 
-   if (!post) {
-      console.error(`File not found: ${slug}.md`);
-      return {
-         tags: ["Error"],
-         title: `${slug} was not found`,
-         description: "Error",
-         icon: "",
-         reviewDate: new Date(),
-         slug: slug,
-         content: "",
-      } as Metadata;
-   }
+   const posts = markdownPosts.map((filename) => {
+      console.log(`${basePath}/${filename}`);
+      const fileContent = fs.readFileSync(`${basePath}/${filename}`, "utf8");
+      const matterResult = matter(fileContent);
+      if (matterResult.data.slug === slug) {
+         return {
+            tags: matterResult.data.tags,
+            title: matterResult.data.title,
+            description: matterResult.data.description,
+            icon: matterResult.data.icon,
+            reviewDate: matterResult.data.reviewDate,
+            slug: filename.replace(".md", ""),
+            content: matterResult.content,
+         } as Metadata;
+      }
+   });
 
-   const file = fs.readFileSync(`${basePath}/${slug}.md`, "utf8");
-   const matterResult = matter(file);
+   console.error(`File not found: ${slug}.md`);
    return {
-      tags: matterResult.data.tags,
-      title: matterResult.data.title,
-      description: matterResult.data.description,
-      icon: matterResult.data.icon,
-      reviewDate: matterResult.data.reviewDate,
+      tags: ["Error"],
+      title: `${slug} was not found`,
+      description: "Error",
+      icon: "",
+      reviewDate: new Date(),
       slug: slug,
-      content: matterResult.content,
+      content: "",
    } as Metadata;
 
    // const posts = markdownPosts.map((filename) => {
