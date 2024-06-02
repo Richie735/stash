@@ -17,12 +17,14 @@ function getPostContent(slug: string) {
          content: matterResult.content,
       };
    } catch (error) {
-      if (error.code === "ENOENT") {
-         console.error(`File not found: ${file}`);
-         // handle the error as appropriate for your application
-      } else {
-         throw error; // re-throw the error unchanged
-      }
+      console.error(error);
+      return {
+         title: "Error",
+         tags: ["Error"],
+         icon: "",
+         reviewDate: new Date(),
+         content: "Error: Post not found",
+      };
    }
 }
 
