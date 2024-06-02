@@ -2,43 +2,11 @@ import getPost from "@/lib/getPost";
 import { Metadata } from "@/lib/types";
 import Markdown from "markdown-to-jsx";
 
-// function getPostContent(slug: string) {
-//    const folder = "src/lib/posts";
-//    const file = folder + "/" + slug + ".md";
-//    try {
-//       const content = fs.readFileSync(file, "utf8");
-//       const matterResult = matter(content);
-//       return {
-//          title: matterResult.data.title,
-//          tags: matterResult.data.tags,
-//          icon: matterResult.data.icon,
-//          reviewDate: matterResult.data.reviewDate,
-//          content: matterResult.content,
-//       };
-//    } catch (error) {
-//       console.error(error);
-//       return {
-//          title: "Error",
-//          tags: ["Error"],
-//          icon: "",
-//          reviewDate: new Date(),
-//          content: "Error: Post not found",
-//       };
-//    }
-// }
-
-// export async function generateMetadata({ params }: { params: Metadata }) {
-//    const id = params?.slug ? params?.slug : "";
-//    return {
-//       title: `Stash - ${id}`,
-//    };
-// }
-
 const page = async (props: { params: Metadata }) => {
    const slug = props.params?.slug;
    // const post = getPostContent(slug);
    const post = getPost("src/lib/posts", slug);
-   console.log(post.content);
+   console.log(slug);
    return (
       <main>
          <article>
