@@ -6,16 +6,24 @@ import Markdown from "markdown-to-jsx";
 function getPostContent(slug: string) {
    const folder = "src/lib/posts";
    const file = folder + "/" + slug + ".md";
-   const content = fs.readFileSync(file, "utf8");
-
-   const matterResult = matter(content);
-   return {
-      title: matterResult.data.title,
-      tags: matterResult.data.tags,
-      icon: matterResult.data.icon,
-      reviewDate: matterResult.data.reviewDate,
-      content: matterResult.content,
-   };
+   try {
+      const content = fs.readFileSync(file, "utf8");
+      const matterResult = matter(content);
+      return {
+         title: matterResult.data.title,
+         tags: matterResult.data.tags,
+         icon: matterResult.data.icon,
+         reviewDate: matterResult.data.reviewDate,
+         content: matterResult.content,
+      };
+   } catch (error) {
+      if (error.code === "ENOENT") {
+         console.error(`File not found: ${file}`);
+         // handle the error as appropriate for your application
+      } else {
+         throw error; // re-throw the error unchanged
+      }
+   }
 }
 
 export async function generateMetadata({ params }: { params: Metadata }) {
